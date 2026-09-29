@@ -1,0 +1,58 @@
+{
+  "name": "tuya-discovery",
+  "version": "0.1.0",
+  "description": "Discover Tuya devices on the LAN over UDP, including devices that only answer a directed request.",
+  "license": "MIT",
+  "bin": "./dist/cli.mjs",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/cli.mjs",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "build:types": "tsc -p tsconfig.build.json",
+    "prepare": "husky",
+    "check": "oxlint && oxfmt --check && tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "citty": "^0.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "tsup": "^8.5.0",
+    "typescript": "^7.0.2"
+  },
+  "lint-staged": {
+    "*.{js,cjs,mjs,ts,mts,cts}": [
+      "oxfmt",
+      "oxlint --fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "oxfmt"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "yarn@4.18.1"
+}
